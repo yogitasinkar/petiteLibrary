@@ -1,0 +1,33 @@
+html {
+  width: 100%;
+  height: 100%;
+  display: table;
+}
+
+body {
+  width: 100%;
+  display: table-cell;
+  background-color: #092635;
+  color: white;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  height: 100%;
+}
+
+.landing {
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.header {
+  background-color: #1B4242;
+}

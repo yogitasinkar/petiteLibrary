@@ -1,0 +1,27 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "javascript.suggest.autoImports": "explicit"
+  },
+  "eslint.validate": [
+    "javascript"
+  ],
+  "editor.linkedEditing": true,
+  "html.autoClosingTags": true,
+  "javascript.autoClosingTags": true,
+  "typescript.autoClosingTags": true,
+  "javascript.format.semicolons": "insert",
+  "editor.formatOnSave": true,
+  "eslint.format.enable": true,
+  "js/ts.implicitProjectConfig.checkJs": true,
+  "javascript.validate.enable": false,
+  "tailwindCSS.includeLanguages": {
+    "html": "html",
+    "javascript": "javascript",
+    "css": "css"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "explorer.sortOrder": "default",
+}

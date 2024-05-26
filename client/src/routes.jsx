@@ -3,6 +3,8 @@ import RootLayout from './pages/Layout/RootLayout';
 import Landing from './pages/Landing/Landing';
 import { Dashboard } from './pages/Dashboard/Dashboard';
 import Books from './pages/Books/Books';
+import AddBook from './pages/Books/AddBook';
+import BooksOutlet from './pages/Books/BooksOutlet';
 
 const appRoutes = [
   {
@@ -21,7 +23,7 @@ const appRoutes = [
       },
       {
         id: 'dashboard',
-        path: '/dashboard',
+        path: 'dashboard',
         element: <Dashboard/>,
         children: [
           {
@@ -31,7 +33,19 @@ const appRoutes = [
           {
             id: 'books',
             path: 'books',
-            element: <Books/>
+            element: <BooksOutlet/>,
+            children: [
+              {
+                id: 'view',
+                index: true,
+                element: <Books />,
+              },
+              {
+                id: 'add',
+                path: 'add',
+                element: <AddBook/>,
+              },
+            ]
           },
           {
             id: 'members',

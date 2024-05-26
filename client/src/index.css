@@ -29,5 +29,10 @@ body {
 }
 
 .header {
-  background-color: #1B4242;
+  /* background-color: #1B4242 !important; */
+}
+
+.ant-spin-container {
+  background-color: white !important;
+  padding: 10px;
 }

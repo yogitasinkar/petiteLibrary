@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const BookSchema = new mongoose.Schema({
-  srNo: {
-    type: Number,
-    required: true,
-  },
   name: {
     type: String,
     required: true,
@@ -25,7 +21,7 @@ const BookSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  copy: {
+  qty: {
     type: Number,
     required: true,
   },
@@ -53,6 +49,10 @@ const BookSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  isIssued: {
+    type: Boolean,
+    default: false
+  }
 });
 
 const Book = mongoose.model('Book', BookSchema);

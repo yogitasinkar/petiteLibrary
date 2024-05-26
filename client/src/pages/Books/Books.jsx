@@ -149,7 +149,7 @@ const Books = () => {
           defaultCurrent:1,
           current:tablePage, 
           onChange: (pg) => setTablePage(pg), 
-          total: data?.totalPages,
+          total: data?.totalCount,
           showSizeChanger: true,
           pageSize: tablePageSize,
           onShowSizeChange: (current, size) => setTablePageSize(size)

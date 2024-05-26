@@ -5,6 +5,9 @@ import { Dashboard } from './pages/Dashboard/Dashboard';
 import Books from './pages/Books/Books';
 import AddBook from './pages/Books/AddBook';
 import BooksOutlet from './pages/Books/BooksOutlet';
+import MembersOutlet from './pages/Members/MembersOutlet';
+import Members from './pages/Members/Members';
+import AddMember from './pages/Members/AddMember';
 
 const appRoutes = [
   {
@@ -36,12 +39,12 @@ const appRoutes = [
             element: <BooksOutlet/>,
             children: [
               {
-                id: 'view',
+                id: 'viewBooks',
                 index: true,
                 element: <Books />,
               },
               {
-                id: 'add',
+                id: 'addBook',
                 path: 'add',
                 element: <AddBook/>,
               },
@@ -50,7 +53,19 @@ const appRoutes = [
           {
             id: 'members',
             path: 'members',
-            element: <div>Members</div>
+            element: <MembersOutlet/>,
+            children: [
+              {
+                id: 'viewMember',
+                index: true,
+                element: <Members />,
+              },
+              {
+                id: 'addMember',
+                path: 'add',
+                element: <AddMember/>,
+              },
+            ]
           },
         ]
       }

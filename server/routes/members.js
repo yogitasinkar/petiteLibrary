@@ -9,10 +9,14 @@ router.get("/", async (req, res) => {
   const page = req.query.page || 1;
   const limit = req.query.limit || 10;
   try {
-    const members = await Member.find()
-      .skip((page - 1) * limit)
-      .limit(limit);
-    res.json(members);
+    const members = await Member.find().skip((page - 1) * limit).limit(limit);
+    const totalCount = await Member.countDocuments();
+    res.json({
+      members,
+      totalCount,
+      totalPages: Math.ceil(totalCount / limit),
+      currentPage: page,
+    });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

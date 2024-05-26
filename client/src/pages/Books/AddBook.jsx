@@ -10,7 +10,6 @@ const AddBook = () => {
   const {mutateAsync} = useCreateBook();
 
   const onFinish = async (values) => {
-    console.log(values);
     await mutateAsync({
       ...values
     })

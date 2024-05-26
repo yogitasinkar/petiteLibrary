@@ -36,6 +36,7 @@ router.get('/', async (req, res) => {
 
     res.json({
       books,
+      totalCount,
       totalPages: Math.ceil(totalCount / limit),
       currentPage: page,
     });

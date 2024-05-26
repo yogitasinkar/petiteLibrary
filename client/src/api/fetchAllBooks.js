@@ -22,6 +22,26 @@ const fetchBooks = async (page, limit, searchName, searchAuthor, searchPublisher
 };
 
 export const useAllBooksQuery = (page, limit, searchName, searchAuthor, searchPublisher, filterIssued) => useQuery({
-  queryKey: ['Books', page, limit, searchName, searchAuthor, searchPublisher, filterIssued],
+  queryKey: ['Books', page, limit, searchName, searchAuthor, searchPublisher],
   queryFn: () => fetchBooks(page, limit, searchName, searchAuthor, searchPublisher, filterIssued),
+});
+
+
+const fetchSearchedBooks = async (searchName) => {
+  try {
+    const { data } = await httpRequest.get(ApiEndPoints.FETCH_SEARCHED_BOOKS, {
+      params: {
+        name: searchName,
+      },
+    });
+    return data;
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+export const useSearchedBooksQuery = (searchName, enabled) => useQuery({
+  queryKey: ['SearchedBooks', searchName],
+  queryFn: () => fetchSearchedBooks(searchName),
+  enabled
 });

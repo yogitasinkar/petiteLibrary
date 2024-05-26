@@ -27,27 +27,27 @@ const BookSchema = new mongoose.Schema({
   },
   location: {
     type: String,
-    required: true,
+    required: false,
   },
   section: {
     type: String,
-    required: true,
+    required: false,
   },
   segment: {
     type: String,
-    required: true,
+    required: false,
   },
   status: {
     type: String,
-    required: true,
+    required: false,
   },
   publisher: {
     type: String,
-    required: true,
+    required: false,
   },
   pages: {
     type: Number,
-    required: true,
+    required: false,
   },
   isIssued: {
     type: Boolean,

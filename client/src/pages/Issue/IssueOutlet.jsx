@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom';
 
-const BooksOutlet = () => {
+const IssueOutlet = () => {
   return (
     <Outlet/>
   )
 }
 
-export default BooksOutlet
+export default IssueOutlet

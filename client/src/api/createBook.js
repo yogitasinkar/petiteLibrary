@@ -17,7 +17,7 @@ export const useCreateBook = () => {
   return useMutation({
     mutationFn: createBook,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['BOOKS'] });
+      queryClient.invalidateQueries({ queryKey: ['Books'] });
       notification.success("Book Added Successfully");
     },
   });

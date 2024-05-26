@@ -4,21 +4,22 @@ import { ApiEndPoints } from '../constants';
 import  httpRequest  from '../utils/httpRequest';
 import {queryClient} from '../utils/queryClient'
 
-const createMember = async (payload) => {
+const createIssue = async (payload) => {
+  console.log({payload})
   try {
-    const { data } = await httpRequest.post(ApiEndPoints.CREATE_MEMBER, {...payload});
+    const { data } = await httpRequest.post(ApiEndPoints.CREATE_ISSUE, {...payload});
     return data;
   } catch (err) {
     throw new Error(err);
   }
 };
 
-export const useCreateMember = () => {
+export const useCreateIssue = () => {
   return useMutation({
-    mutationFn: createMember,
+    mutationFn: createIssue,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['Members'] });
-      notification.success("Member Added Successfully");
+      queryClient.invalidateQueries({ queryKey: ['Issues'] });
+      notification.success("Book Issued Successfully");
     },
   });
 };

@@ -17,16 +17,14 @@ const AddMember = () => {
     form.resetFields();
   };
   
-
-
   return (
     <div className="p-5">
       <div className="flex gap-5">
         <h1 className="text-2xl">Add Member</h1>
         <Button type="link" onClick={()=> navigate(-1)}>Back To View All Members</Button>
       </div>
-      <div className="flex justify-center mt-3 ">
-      <Form
+      <div className="flex justify-center mt-3">
+        <Form
           className="p-3 border rounded"
           form={form}
           onFinish={onFinish}

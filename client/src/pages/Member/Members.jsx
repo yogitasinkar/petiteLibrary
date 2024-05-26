@@ -25,6 +25,11 @@ const columns = [
     dataIndex: 'phone',
     key: 'phone',
   },
+  {
+    title: 'Id',
+    dataIndex: '_id',
+    key: '_id',
+  },
 ]
 
 const Members = () => {

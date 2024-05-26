@@ -2,12 +2,15 @@ import { Navigate, createBrowserRouter } from 'react-router-dom';
 import RootLayout from './pages/Layout/RootLayout';
 import Landing from './pages/Landing/Landing';
 import { Dashboard } from './pages/Dashboard/Dashboard';
-import Books from './pages/Books/Books';
-import AddBook from './pages/Books/AddBook';
-import BooksOutlet from './pages/Books/BooksOutlet';
-import MembersOutlet from './pages/Members/MembersOutlet';
-import Members from './pages/Members/Members';
-import AddMember from './pages/Members/AddMember';
+import Books from './pages/Book/Books';
+import AddBook from './pages/Book/AddBook';
+import BookOutlet from './pages/Book/BookOutlet';
+import MemberOutlet from './pages/Member/MemberOutlet';
+import Members from './pages/Member/Members';
+import AddMember from './pages/Member/AddMember';
+import IssueOutlet from './pages/Issue/IssueOutlet';
+import Issues from './pages/Issue/Issues';
+import AddIssue from './pages/Issue/AddIssue';
 
 const appRoutes = [
   {
@@ -36,7 +39,7 @@ const appRoutes = [
           {
             id: 'books',
             path: 'books',
-            element: <BooksOutlet/>,
+            element: <BookOutlet/>,
             children: [
               {
                 id: 'viewBooks',
@@ -53,7 +56,7 @@ const appRoutes = [
           {
             id: 'members',
             path: 'members',
-            element: <MembersOutlet/>,
+            element: <MemberOutlet/>,
             children: [
               {
                 id: 'viewMember',
@@ -64,6 +67,23 @@ const appRoutes = [
                 id: 'addMember',
                 path: 'add',
                 element: <AddMember/>,
+              },
+            ]
+          },
+          {
+            id: 'issues',
+            path: 'issues',
+            element: <IssueOutlet/>,
+            children: [
+              {
+                id: 'viewIssue',
+                index: true,
+                element: <Issues />,
+              },
+              {
+                id: 'addIssue',
+                path: 'add',
+                element: <AddIssue/>,
               },
             ]
           },

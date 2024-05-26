@@ -22,25 +22,34 @@ router.get('/', async (req, res) => {
 // Create a Book Issue
 router.post('/', async (req, res) => {
   const { bookId, memberId, issueDate, dueDate } = req.body;
-  const issue = new Issue({
-    book: bookId,
-    member: memberId,
-    issueDate,
-    dueDate,
-  });
 
   try {
+    // Check if the book is already issued
+    const book = await Book.findById(bookId);
+    console.log(bookId, book);
+    if (book.isIssued) {
+      return res.status(400).json({ message: 'Book is already issued' });
+    }
+
+    const issue = new Issue({
+      book: bookId,
+      member: memberId,
+      issueDate,
+      dueDate,
+    });
+
     const newIssue = await issue.save();
 
     // Update the isIssued field in the Book model
-    await Book.findByIdAndUpdate(bookId, { isIssued: true });
+    book.isIssued = true;
+    await book.save();
 
     res.status(201).json(newIssue);
   } catch (err) {
+    console.error('Error creating book issue:', err);
     res.status(400).json({ message: err.message });
   }
 });
-
 
 // PUT /api/issues/:id/return 
 // Update the returnDate of an issue

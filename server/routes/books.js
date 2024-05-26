@@ -71,6 +71,32 @@ router.post("/", async (req, res) => {
 });
 
 
+// GET /api/books/search  
+// Fetch books that are not currently issued, searched by name
+router.get('/search', async (req, res) => {
+  const { name } = req.query;
+  try {
+    let query = {};
+    if (name) {
+      query.name = new RegExp(name, 'i');
+    }
+
+    query.isIssued = false;
+
+    const books = await Book.find(query).select('_id name');
+    const formattedBooks = books.map(book => ({
+      id: book._id,
+      value: `${book.name} ,id:${book._id}`,
+    }));
+
+    res.json(formattedBooks);
+  } catch (err) {
+    console.error('Error fetching books list:', err);
+    res.status(500).json({ message: 'Failed to fetch books list' });
+  }
+});
+
+
 // GET /api/books/:id
 // Get BookById
 router.get("/:id", async (req, res) => {

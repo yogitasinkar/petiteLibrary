@@ -1,5 +1,5 @@
 import {  Table, Input, Button, Switch, Tag } from 'antd';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAllBooksQuery } from '../../api/fetchAllBooks';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
@@ -7,10 +7,14 @@ const { Search } = Input;
 
 const columns = [
   {
+    title: 'Id',
+    dataIndex: '_id',
+    key: '_id'
+  },
+  {
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
-    render: (text) => <a>{text}</a>,
   },
   {
     title: 'Author',
@@ -95,6 +99,14 @@ const Books = () => {
   const [searchPublisher, setSearchPublisher] = useState('');
   const [filterIssued, setFilterIssued] = useState(false) 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if(tablePage > 1) {
+      setTablePage(1);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchName, searchAuthor, searchPublisher])
+  
   
   const { data, isLoading } = useAllBooksQuery(tablePage, tablePageSize, searchName, searchAuthor, searchPublisher, filterIssued);
 

@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, DatePicker } from 'antd';
 import { useCreateMember } from '../../api/createMember';
 
+const dateFormat = 'DD/MM/YYYY';
+const { TextArea } = Input;
 
 const AddMember = () => {
   const navigate = useNavigate();
@@ -64,16 +66,6 @@ const AddMember = () => {
           </Form.Item>
 
           <Form.Item
-            name="email"
-            label={<label className="text-white">Email</label>}
-            rules={[
-              { type: 'email' }
-            ]}
-          >
-            <Input />
-          </Form.Item>
-
-          <Form.Item
             name="phone"
             label={<label className="text-white">Phone</label>}
             rules={[
@@ -90,6 +82,49 @@ const AddMember = () => {
             <Input />
           </Form.Item>
 
+          <Form.Item
+            name="email"
+            label={<label className="text-white">Email</label>}
+            rules={[
+              { type: 'email' }
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            name="dob"
+            label={<label className="text-white">DOB</label>}
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <DatePicker format={dateFormat}/>
+          </Form.Item>
+
+          <Form.Item
+            name="bloodGroup"
+            label={<label className="text-white">Blood Group</label>}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            name="address"
+            label={<label className="text-white">Address</label>}
+          >
+            <TextArea />
+          </Form.Item>
+
+
+          <Form.Item
+            name="aadhaarNo"
+            label={<label className="text-white">Aadhaar No.</label>}
+          >
+            <Input />
+          </Form.Item>
 
           <Form.Item
             wrapperCol={{

@@ -9,13 +9,29 @@ const MemberSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  phone: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     required: false,
   },
-  phone: {
-    type: String,
+  dob: {
+    type: Date,
     required: true,
+  },
+  bloodGroup: {
+    type: String,
+    required: false,
+  },
+  address: {
+    type: String,
+    required: false,
+  },
+  aadhaarNo: {
+    type: String,
+    required: false,
   },
 });
 

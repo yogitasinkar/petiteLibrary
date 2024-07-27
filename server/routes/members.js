@@ -5,10 +5,22 @@ const Member = require("../models/Member");
 // GET /api/members
 // Fetch all Members
 router.get("/", async (req, res) => {
+  const { name, phone } = req.query;
   const page = req.query.page || 1;
   const limit = req.query.limit || 10;
+  const skip = (page - 1) * limit;
   try {
-    const members = await Member.find().skip((page - 1) * limit).limit(limit);
+    let query = {};
+    if (name) {
+      query.name = new RegExp(name, 'i');
+    }
+    if (phone) {
+      query.$or = [
+        { phone: new RegExp(phone, 'i') },
+        { altPhone: new RegExp(phone, 'i') }
+      ];
+    }
+    const members = await Member.find(query).skip(skip).limit(limit);
     const totalCount = await Member.countDocuments();
     res.json({
       members,
@@ -30,19 +42,16 @@ router.get('/search', async (req, res) => {
   try {
     let query = {};
     if (name) {
-      query.$or = [
-        { firstName: new RegExp(name, 'i') },
-        { lastName: new RegExp(name, 'i') }
-      ];
+      query.name = new RegExp(name, 'i');
     }
 
     // Find members matching the query
-    const members = await Member.find(query).select('_id firstName lastName');
+    const members = await Member.find(query).select('_id name');
 
     // Format the result
     const formattedMembers = members.map(member => ({
       id: member._id,
-      value: `${member.firstName} ${member.lastName} ,id:${member._id}`,
+      value: `${member.name} ,id:${member._id}`,
     }));
 
     res.json(formattedMembers);

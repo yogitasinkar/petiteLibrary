@@ -1,29 +1,59 @@
 import { useAllMembersQuery } from '../../api/fetchAllMembers';
-import { Button, Table } from 'antd';
+import { Button, Table, Input } from 'antd';
 import {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-
+const { Search } = Input;
 
 const columns = [
   {
-    title: 'FirstName',
-    dataIndex: 'firstName',
-    key: 'firstName',
-  },
-  {
-    title: 'LastName',
-    dataIndex: 'lastName',
-    key: 'lastName',
-  },
-  {
-    title: 'Email',
-    dataIndex: 'email',
-    key: 'email',
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
   },
   {
     title: 'Phone',
     dataIndex: 'phone',
     key: 'phone',
+  },
+  {
+    title: 'Joining Date',
+    dataIndex: 'joiningDate',
+    key: 'joiningDate',
+  },
+  {
+    title: 'Address Line 1',
+    dataIndex: 'addressLine1',
+    key: 'addressLine1',
+  },
+  {
+    title: 'Address Line 2',
+    dataIndex: 'addressLine2',
+    key: 'addressLine2',
+  },
+  {
+    title: 'Address Line 3',
+    dataIndex: 'addressLine3',
+    key: 'addressLine3',
+  },
+  {
+    title: 'City',
+    dataIndex: 'city',
+    key: 'city',
+  },
+  {
+    title: 'Pin Code',
+    dataIndex: 'pinCode',
+    key: 'pinCode',
+  },
+  {
+    title: 'Alt Phone',
+    dataIndex: 'altPhone',
+    key: 'altPhone',
+  },
+  {
+    title: 'Email',
+    dataIndex: 'email',
+    key: 'email',
   },
   {
     title: 'Id',
@@ -35,14 +65,33 @@ const columns = [
 const Members = () => {
   const [tablePage, setTablePage] = useState(1)
   const [tablePageSize, setTablePageSize] = useState(10)
-  const { data, isLoading } = useAllMembersQuery(tablePage, tablePageSize);
+  const [searchName, setSearchName] = useState("")
+  const [searchPhone, setSearchPhone] = useState("")
+
+  const { data, isLoading } = useAllMembersQuery(tablePage, tablePageSize, searchName, searchPhone);
   const navigate = useNavigate();
 
   return (
     <div className="p-5">
       <h1 className="text-2xl">View Members</h1>
       <div className="my-3 flex justify-between items-center">
-        <div/>
+      <div className="flex gap-3 items-center">
+          <Search
+            placeholder="Filter By Name"
+            allowClear
+            enterButton="Search"
+            size="small"
+            onSearch={(val)=>setSearchName(val)}
+          />
+          <Search
+            placeholder="Filter By Phone"
+            allowClear
+            enterButton="Search"
+            size="small"
+            onSearch={(val)=>setSearchPhone(val)}
+          />
+
+        </div>
         <Button type="primary" onClick={()=> navigate('add')}>Add Members</Button>
       </div>
       <Table 

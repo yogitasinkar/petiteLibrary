@@ -4,11 +4,13 @@ import { useCreateIssue } from '../../api/createIssue';
 import { useSearchedBooksQuery } from '../../api/fetchAllBooks';
 import { useSearchedMembersQuery } from '../../api/fetchAllMembers';
 import {useState} from 'react';
+import { debounce } from '../../utils/helper';
+
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-import { debounce } from '../../utils/helper';
 dayjs.extend(customParseFormat);
-
+import utc from "dayjs/plugin/utc";
+dayjs.extend(utc)
 const dateFormat = 'DD/MM/YYYY';
 
 
@@ -25,11 +27,13 @@ const AddIssue = () => {
   const { mutateAsync } = useCreateIssue();
 
   const onFinish = async (values) => {
-    console.log(values, values.bookId.split("id:")[1], values.memberId.split("id:")[1]);
+   
     await mutateAsync({
       ...values,
-      bookId: values.bookId.split("id:")[1],
-      memberId: values.memberId.split("id:")[1],
+      bookId: values.bookName.split("id:")[1],
+      memberId: values.memberName.split("id:")[1],
+      issueDate: dayjs(values.issueDate).local().format(),
+      dueDate: dayjs(values.dueDate).local().format(),
     })
     form.resetFields();
   };
@@ -58,14 +62,14 @@ const AddIssue = () => {
             width: 700,
           }}
           initialValues={{ 
-            issueDate: dayjs(dayjs().format('DD-MM-YYYY'), dateFormat),
+            issueDate: dayjs(dayjs().utc().local().format('DD-MM-YYYY'), dateFormat),
             dueDate: dayjs(dayjs().add(1, 'month').format('DD-MM-YYYY'), dateFormat),
           }}
         >
 
           <Form.Item
-            name="bookId"
-            label={<label className="text-white">Book Id </label>}
+            name="bookName"
+            label={<label className="text-white">Book Name </label>}
             rules={[
               {
                 required: true,
@@ -84,8 +88,8 @@ const AddIssue = () => {
 
 
           <Form.Item
-            name="memberId"
-            label={<label className="text-white">Member Id </label>}
+            name="memberName"
+            label={<label className="text-white">Member Name </label>}
             rules={[
               {
                 required: true,
@@ -95,7 +99,6 @@ const AddIssue = () => {
             <AutoComplete
               value={searchMemberName}
               options={membersOptions}
-              onSearch={(value) => console.log(value)}
               onChange={debounce((value) => setSearchMemberName(value), 500)}
               placeholder="Search Member Name"
               notFoundContent={<p>No Member Found</p>}

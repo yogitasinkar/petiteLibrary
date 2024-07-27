@@ -3,22 +3,25 @@ import { useMutation } from '@tanstack/react-query';
 import { ApiEndPoints } from '../constants';
 import  httpRequest  from '../utils/httpRequest';
 import {queryClient} from '../utils/queryClient'
+import { interpolateEndpoint } from "../utils/helper";
 
-const createIssue = async (payload) => {
+const createReturn = async (payload) => {
+  console.log(payload)
   try {
-    const { data } = await httpRequest.post(ApiEndPoints.CREATE_ISSUE, {...payload});
+    const endpoint = interpolateEndpoint(ApiEndPoints.CREATE_RETURN, {id: payload.id});
+    const { data } = await httpRequest.put(endpoint, { returnDate: payload.returnDate});
     return data;
   } catch (err) {
     throw new Error(err);
   }
 };
 
-export const useCreateIssue = () => {
+export const useCreateReturn = () => {
   return useMutation({
-    mutationFn: createIssue,
+    mutationFn: createReturn,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['Issues'] });
-      notification.success("Book Issued Successfully");
+      notification.success("Book Returned Successfully");
     },
   });
 };

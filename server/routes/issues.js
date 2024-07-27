@@ -8,7 +8,7 @@ const Book = require("../models/Book");
 // Fetch All Issues
 router.get('/', async (req, res) => {
   try {
-    const issues = await Issue.find({ returnDate: null })
+    const issues = await Issue.find()
       .populate('book')
       .populate('member');
     res.json(issues);
@@ -26,7 +26,6 @@ router.post('/', async (req, res) => {
   try {
     // Check if the book is already issued
     const book = await Book.findById(bookId);
-    console.log(bookId, book);
     if (book.isIssued) {
       return res.status(400).json({ message: 'Book is already issued' });
     }
@@ -90,6 +89,7 @@ router.get('/:memberId', async (req, res) => {
       .populate('member');
 
     const response = issues.map(issue => ({
+      _id,
       book: issue.book,
       issueDate: issue.issueDate,
       dueDate: issue.dueDate,

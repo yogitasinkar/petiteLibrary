@@ -12,7 +12,7 @@ const AddMember = () => {
 
 
   const onFinish = async (values) => {
-    console.log(values);
+    console.log({values})
     await mutateAsync({
       ...values
     })
@@ -27,7 +27,7 @@ const AddMember = () => {
       </div>
       <div className="flex justify-center mt-3">
         <Form
-          className="p-3 border rounded"
+          className="p-2 border rounded"
           form={form}
           onFinish={onFinish}
           labelCol={{
@@ -42,20 +42,8 @@ const AddMember = () => {
           }}
         >
           <Form.Item
-            name="firstName"
-            label={<label className="text-white">First Name</label>}
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-
-          <Form.Item
-            name="lastName"
-            label={<label className="text-white">Last Name</label>}
+            name="name"
+            label={<label className="text-white">Name</label>}
             rules={[
               {
                 required: true,
@@ -83,6 +71,23 @@ const AddMember = () => {
           </Form.Item>
 
           <Form.Item
+            name="altPhone"
+            label={<label className="text-white">Alt Phone</label>}
+            rules={[
+              {
+                required: true,
+              },
+              {
+                max: 10,
+                min: 10,
+                message: 'Phone number must be 10 digits',
+              }
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
             name="email"
             label={<label className="text-white">Email</label>}
             rules={[
@@ -93,35 +98,45 @@ const AddMember = () => {
           </Form.Item>
 
           <Form.Item
-            name="dob"
-            label={<label className="text-white">DOB</label>}
-            rules={[
-              {
-                required: true,
-              },
-            ]}
+            name="joiningDate"
+            label={<label className="text-white">Joining Date</label>}
           >
             <DatePicker format={dateFormat}/>
           </Form.Item>
 
           <Form.Item
-            name="bloodGroup"
-            label={<label className="text-white">Blood Group</label>}
-          >
-            <Input />
-          </Form.Item>
-
-          <Form.Item
-            name="address"
-            label={<label className="text-white">Address</label>}
+            name="addressLine1"
+            label={<label className="text-white">Address Line 1</label>}
           >
             <TextArea />
           </Form.Item>
 
 
           <Form.Item
-            name="aadhaarNo"
-            label={<label className="text-white">Aadhaar No.</label>}
+            name="addressLine2"
+            label={<label className="text-white">Address Line 2</label>}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            name="addressLine3"
+            label={<label className="text-white">Address Line 3</label>}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            name="city"
+            label={<label className="text-white">City</label>}
+          >
+            <Input />
+          </Form.Item>
+
+
+          <Form.Item
+            name="pinCode"
+            label={<label className="text-white">Pin</label>}
           >
             <Input />
           </Form.Item>

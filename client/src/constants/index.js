@@ -7,4 +7,5 @@ export const ApiEndPoints = {
   CREATE_ISSUE: '/api/issues',
   FETCH_SEARCHED_BOOKS: '/api/books/search',
   FETCH_SEARCHED_MEMBERS: '/api/members/search',
+  CREATE_RETURN: '/api/issues/{id}/return',
 }

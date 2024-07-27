@@ -1,7 +1,6 @@
-import {  Table, Input, Button, Switch, Tag } from 'antd';
+import {  Table, Input, Button,  Tag } from 'antd';
 import { useState, useEffect } from 'react';
 import { useAllBooksQuery } from '../../api/fetchAllBooks';
-import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 const { Search } = Input;
 
@@ -97,18 +96,16 @@ const Books = () => {
   const [searchName, setSearchName] = useState('');
   const [searchAuthor, setSearchAuthor] = useState('');
   const [searchPublisher, setSearchPublisher] = useState('');
-  const [filterIssued, setFilterIssued] = useState(false) 
   const navigate = useNavigate();
 
   useEffect(() => {
     if(tablePage > 1) {
       setTablePage(1);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchName, searchAuthor, searchPublisher])
+  }, [searchName, searchAuthor, searchPublisher, tablePage])
   
   
-  const { data, isLoading } = useAllBooksQuery(tablePage, tablePageSize, searchName, searchAuthor, searchPublisher, filterIssued);
+  const { data, isLoading } = useAllBooksQuery(tablePage, tablePageSize, searchName, searchAuthor, searchPublisher);
 
   return (
     <div className="p-5">
@@ -136,15 +133,6 @@ const Books = () => {
             size="small"
             onSearch={(val)=>setSearchPublisher(val)}
           />
-          <div className="bg-white text-gray-900 p-2 flex gap-2 text-sm rounded">
-            <span>Issued</span>
-            <Switch 
-              value={filterIssued} 
-              onChange={()=>setFilterIssued(!filterIssued)}
-              checkedChildren={<CheckOutlined />}
-              unCheckedChildren={<CloseOutlined />}
-            />
-          </div>
         </div>
       <Button type="primary" onClick={()=> navigate('add')}>Add Book</Button>
       </div>

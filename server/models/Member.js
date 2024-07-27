@@ -1,11 +1,7 @@
 const mongoose = require('mongoose');
 
 const MemberSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    required: true,
-  },
-  lastName: {
+  name: {
     type: String,
     required: true,
   },
@@ -13,23 +9,35 @@ const MemberSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  altPhone: {
+    type: String,
+    required: false,
+  },
   email: {
     type: String,
     required: false,
   },
-  dob: {
+  joiningDate: {
     type: Date,
-    required: true,
+    required: false,
   },
-  bloodGroup: {
+  addressLine1: {
     type: String,
     required: false,
   },
-  address: {
+  addressLine2: {
     type: String,
     required: false,
   },
-  aadhaarNo: {
+  addressLine3: {
+    type: String,
+    required: false,
+  },
+  city: {
+    type: String,
+    required: false,
+  },
+  pinCode: {
     type: String,
     required: false,
   },

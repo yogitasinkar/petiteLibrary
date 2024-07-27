@@ -3,12 +3,14 @@ import  httpRequest  from '../utils/httpRequest';
 import { useQuery } from '@tanstack/react-query';
 
 
-const fetchMembers = async (page, limit) => {
+const fetchMembers = async (page, limit, searchName, searchPhone) => {
   try {
     const { data } = await httpRequest.get(ApiEndPoints.FETCH_ALL_MEMBERS, {
       params: {
         page,
         limit,
+        name: searchName,
+        phone: searchPhone,
       },
     });
     return data;
@@ -17,9 +19,9 @@ const fetchMembers = async (page, limit) => {
   }
 };
 
-export const useAllMembersQuery = (page, limit) => useQuery({
-  queryKey: ['Members', page, limit],
-  queryFn: () => fetchMembers(page, limit),
+export const useAllMembersQuery = (page, limit, searchName, searchPhone) => useQuery({
+  queryKey: ['Members', page, limit, searchName, searchPhone],
+  queryFn: () => fetchMembers(page, limit, searchName, searchPhone),
 });
 
 

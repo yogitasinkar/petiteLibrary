@@ -15,3 +15,13 @@ export function debounce(func, wait, immediate) {
     if (callNow) func.apply(context, args);
   };
 }
+
+export function interpolateEndpoint(str, obj) {
+  let a = str;
+  Object.keys(obj)
+    .forEach((key) => {
+      a = a.replace(`{${key}}`, obj[key]);
+    });
+
+  return a;
+}

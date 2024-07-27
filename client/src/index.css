@@ -24,12 +24,10 @@ body {
 .landing {
   height: inherit;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center
-}
-
-.header {
-  /* background-color: #1B4242 !important; */
+  justify-content: center;
+  gap: 8px;
 }
 
 .ant-spin-container {

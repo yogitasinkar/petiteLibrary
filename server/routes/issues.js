@@ -10,7 +10,8 @@ router.get('/', async (req, res) => {
   try {
     const issues = await Issue.find()
       .populate('book')
-      .populate('member');
+      .populate('member')
+      .sort({ issueDate: -1 });
     res.json(issues);
   } catch (err) {
     res.status(500).json({ message: err.message });

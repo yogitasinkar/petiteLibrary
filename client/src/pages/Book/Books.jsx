@@ -8,7 +8,7 @@ const columns = [
   {
     title: 'Id',
     dataIndex: '_id',
-    key: '_id'
+    key: '_id',
   },
   {
     title: 'Name',
@@ -19,13 +19,11 @@ const columns = [
     title: 'Author',
     dataIndex: 'author',
     key: 'author',
-    width: 200,
   },
   {
     title: 'Publisher',
     dataIndex: 'publisher',
     key: 'publisher',
-    width: 300,
   },
   {
     title: 'Issue Status',
@@ -42,51 +40,43 @@ const columns = [
     title: 'Segment',
     dataIndex: 'segment',
     key: 'segment',
-    width: 100,
   },
   {
     title: 'Language',
     dataIndex: 'language',
     key: 'language',
-    width: 100,
   },
   {
     title: 'Pages',
     dataIndex: 'pages',
     key: 'pages',
-    width: 100,
   },
   {
     title: 'Quantity',
     dataIndex: 'qty',
     key: 'qty',
-    width: 100,
   },
 
   {
     title: 'Location',
     dataIndex: 'location',
     key: 'location',
-    width: 100,
   },
   {
     title: 'Section',
     dataIndex: 'section',
     key: 'section',
-    width: 100,
   },
   {
     title: 'New No.',
     dataIndex: 'newNo',
     key: 'newNo',
-    width: 100,
 
   },
   {
     title: 'Old No.',
     dataIndex: 'oldNo',
     key: 'oldNo',
-    width: 100,
   },
 ]
 

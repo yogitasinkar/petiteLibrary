@@ -22,9 +22,9 @@ const AddBook = () => {
         <h1 className="text-2xl">Add Book</h1>
         <Button type="link" onClick={()=> navigate(-1)}>Back To View All Books</Button>
       </div>
-      <div className="flex justify-center mt-3 ">
+      <div className="flex justify-center mt-3 h-[inherit]">
         <Form
-          className="p-3 border rounded"
+          className="p-3 border rounded max-h-[calc(100vh-12rem)] overflow-scroll"
           form={form}
           onFinish={onFinish}
           labelCol={{
@@ -119,11 +119,6 @@ const AddBook = () => {
           <Form.Item
             name="oldNo"
             label={<label className="text-white">Old No</label>}
-            rules={[
-              {
-                required: true,
-              },
-            ]}
           >
             <InputNumber />
           </Form.Item>

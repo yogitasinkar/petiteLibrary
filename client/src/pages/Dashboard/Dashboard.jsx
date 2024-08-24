@@ -7,7 +7,7 @@ export const Dashboard = () => {
   return (
     <div className="overflow-hidden">
       <div className="fixed h-14 top-0 bg-[#1B4242] w-full flex items-center justify-between">
-        <div className="p-2">PETITE LIBRARY</div>
+        <div className="p-2">PETIT LIBRARY</div>
         <div className="flex gap-8">
           <NavLink 
             to={"books"}

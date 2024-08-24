@@ -10,7 +10,7 @@ const Landing = () => {
 
   return (
     <div className='landing'>
-      <h1>Welcome to the Petite Library</h1>
+      <h1>Welcome to the Petit Library</h1>
       <Button type="primary" onClick={handleNavigate}>Get Started</Button>
     </div>
   )

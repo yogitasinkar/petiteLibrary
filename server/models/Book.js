@@ -15,7 +15,7 @@ const BookSchema = new mongoose.Schema({
   },
   oldNo: {
     type: Number,
-    required: true,
+    required: false,
   },
   newNo: {
     type: String,
